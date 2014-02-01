@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><SplitPane dividerPositions="0.35451505016722407" focusTraversable="true" layoutX="154.0" layoutY="107.0" prefHeight="524.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0" xmlns:fx="http://javafx.com/fxml">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+<children><TreeView layoutX="4.5" layoutY="134.0" prefHeight="598.0" prefWidth="209.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+</children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+<children><SplitPane dividerPositions="0.2785234899328859" focusTraversable="true" orientation="VERTICAL" prefHeight="598.0" prefWidth="383.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+<children><TableView fx:id="table" layoutX="38.0" layoutY="-18.5" prefHeight="163.0" prefWidth="381.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+  <columns>
+    <TableColumn prefWidth="75.0" text="C1" />
+    <TableColumn prefWidth="75.0" text="C2" />
+  </columns>
+</TableView>
+</children></AnchorPane>
+    <AnchorPane fx:id="details" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+<children>
+<HBox fx:id="titlebar" layoutX="14.309814453125" layoutY="13.0" AnchorPane.leftAnchor="14.309814453125" AnchorPane.rightAnchor="26.690185546875" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<HBox fx:id="labels" layoutX="14.309814453125" layoutY="14.0" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Hyperlink fx:id="project" layoutX="14.309814453125" layoutY="14.0" text="PROJECT" /><Label layoutX="68.494384765625" layoutY="17.0" text="/" /><Hyperlink fx:id="id" layoutX="102.309814453125" layoutY="14.0" text="ID" />
+</children>
+</HBox><TextField fx:id="synopsis" layoutX="110.0" layoutY="13.0" prefHeight="23.0" prefWidth="262.0" promptText="SYNOPSIS" HBox.hgrow="ALWAYS" />
+</children>
+</HBox><Label layoutX="14.1845703125" layoutY="47.5" text="Description" /><TextArea fx:id="descriptionArea" layoutX="14.0" layoutY="69.0" prefHeight="351.0" prefWidth="359.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="69.0" />
+</children></AnchorPane>
+  </items>
+</SplitPane>
+</children></AnchorPane>
+  </items>
+</SplitPane>
+<HBox alignment="CENTER" layoutX="416.0" layoutY="25.0" spacing="15.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="22.5" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Button fx:id="newIssue" layoutX="363.959228515625" layoutY="22.5" mnemonicParsing="false" onAction="#newIssueFired" text="New" /><Button fx:id="saveIssue" layoutX="421.959228515625" layoutY="22.5" mnemonicParsing="false" onAction="#saveIssueFired" text="Save" /><Button fx:id="deleteIssue" layoutX="483.959228515625" layoutY="22.5" mnemonicParsing="false" onAction="#deleteButtonFired" text="Delete" />
+</children>
+</HBox><Label fx:id="messageBox" layoutX="73.0" layoutY="27.0" prefHeight="15.0" prefWidth="329.0" />
+</children></AnchorPane>
