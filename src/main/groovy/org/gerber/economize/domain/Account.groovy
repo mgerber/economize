@@ -1,5 +1,6 @@
 /**
- * 
+ *
+ *
  */
 package org.gerber.economize.domain
 
