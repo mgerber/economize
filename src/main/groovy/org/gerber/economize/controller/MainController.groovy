@@ -32,13 +32,9 @@ class MainController {
     @FXML
     private StackPane actionView
 
-	private Map<String, Object> viewMap = new HashMap()
+	@Resource(name='ViewMap')
+	private Map<String, Object> viewMap
 
-    @Autowired
-    private NewBankController newBankController
-
-    @Autowired
-    NewAccountController newAccountController
     @Autowired
     BankInformationRepository bankInformationRepository
     @Autowired
@@ -51,18 +47,8 @@ class MainController {
 
     @FXML
     public void newBank() {
-		def view = this.viewMap.get(NEW_BANK_VIEW)
-		if (view == null)
-		{
-			LOGGER.info 'creating new view {}', NEW_BANK_VIEW
-			def  fxmlLoader = new FXMLLoader(getClass().getResource(NEW_BANK_VIEW))
-			fxmlLoader.setController(this.newBankController)
-			view = fxmlLoader.load();
-			this.viewMap.put(NEW_BANK_VIEW, view);
-		}
-
         this.actionView.getChildren().clear()
-        this.actionView.getChildren().addAll(view)
+        this.actionView.getChildren().addAll(this.viewMap.get(NEW_BANK_VIEW))
     }
 
     @FXML
@@ -72,18 +58,8 @@ class MainController {
 
     @FXML
     public void newAccount() {
-		def view = this.viewMap.get(NEW_ACCOUNT_VIEW)
-		if (view == null)
-		{
-			LOGGER.info 'creating new view {}', NEW_ACCOUNT_VIEW
-			def  fxmlLoader = new FXMLLoader(getClass().getResource(NEW_ACCOUNT_VIEW))
-			fxmlLoader.setController(this.newAccountController)
-			view = fxmlLoader.load();
-			this.viewMap.put(NEW_ACCOUNT_VIEW, view);
-		}
-
         this.actionView.getChildren().clear()
-        this.actionView.getChildren().addAll(view)
+        this.actionView.getChildren().addAll(this.viewMap.get(NEW_ACCOUNT_VIEW))
     }
 
 }
