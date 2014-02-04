@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="238.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TextField fx:id="blz" layoutX="158.0" layoutY="60.0" prefHeight="23.0" prefWidth="195.0" />
+        <TextField fx:id="bank" layoutX="158.0" layoutY="94.0" prefHeight="23.0" prefWidth="195.0" focusTraversable="false" editable="false" />
+        <TextField fx:id="knr" layoutX="158.0" layoutY="129.0" prefHeight="23.0" prefWidth="195.0" />
+        <Label layoutX="52.0" layoutY="64.0" text="Bankleitzahl" />
+        <Label layoutX="52.0" layoutY="98.0" text="Bank" />
+        <Label layoutX="52.0" layoutY="133.0" text="Kontonummer" />
+        <Button fx:id="saveButton" layoutX="260.0" layoutY="184.0" mnemonicParsing="false" onAction="#saveButtonFired" prefHeight="23.0" prefWidth="93.0" text="Speichern" />
+    </children>
+</AnchorPane>

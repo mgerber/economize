@@ -4,9 +4,7 @@
  */
 package org.gerber.economize.domain
 
-import javax.persistence.*;
-
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import javax.persistence.*
 
 /**
  * @author Michael Gerber
@@ -14,11 +12,26 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 @Entity
 class Account {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
-//	@Column(nullable=false)
-//	private Bank bank;
-	private String accountNumber;
-	private String IBAN;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    private Bank bank
+
+    private String accountNumber
+
+    private String iban
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", bank=" + bank +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", iban='" + iban + '\'' +
+                '}';
+    }
 }

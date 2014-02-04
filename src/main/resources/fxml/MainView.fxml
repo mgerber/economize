@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0"
+            prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <SplitPane dividerPositions="0.31362467866323906" focusTraversable="true" layoutX="86.0" layoutY="127.0"
+                   prefHeight="694.0" prefWidth="780.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <TreeView layoutX="20.5" layoutY="90.0" prefHeight="692.0" prefWidth="241.0"
+                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                  AnchorPane.topAnchor="0.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <SplitPane dividerPositions="0.6608695652173913" focusTraversable="true" layoutX="142.0"
+                                   layoutY="417.0" orientation="VERTICAL" prefHeight="692.0" prefWidth="531.0"
+                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                                   xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                        <StackPane fx:id="actionView" layoutX="80.0" layoutY="151.5" prefHeight="453.0"
+                                                   prefWidth="529.0" AnchorPane.bottomAnchor="0.0"
+                                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                   AnchorPane.topAnchor="0.0"/>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0"/>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <MenuBar prefHeight="25.0" prefWidth="780.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                 xmlns:fx="http://javafx.com/fxml">
+            <menus>
+                <Menu mnemonicParsing="false" text="Views">
+                    <items>
+                        <Menu mnemonicParsing="false" text="Banks">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Show" onAction="#showBanks"/>
+                                <MenuItem mnemonicParsing="false" text="New" onAction="#newBank"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Accounts">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Show" onAction="#showAccounts"/>
+                                <MenuItem mnemonicParsing="false" text="New" onAction="#newAccount"/>
+                            </items>
+                        </Menu>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>
