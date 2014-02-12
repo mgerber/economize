@@ -12,6 +12,7 @@ import org.gerber.economize.controller.MainController;
 import org.gerber.economize.controller.NewAccountController;
 import org.gerber.economize.controller.NewBankController;
 import org.gerber.economize.domain.Account
+import org.gerber.economize.view.NavigationTreeItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -103,5 +104,21 @@ class SpringConfiguration {
 		views.put(MainController.NEW_ACCOUNT_VIEW, fxmlLoader.load());
 
 		return views
+	}
+	
+	@Bean(name="DefaultHbciProperties")
+	public Properties getHbciDefaultProperties() {
+		return new Properties() {
+			{
+				setProperty("client.passport.default", "PinTan");
+				setProperty("default.hbciversion", "plus");
+				setProperty("log.loglevel.default", "0");
+				setProperty("kernel.rewriter", "InvalidSegment,WrongStatusSegOrder,WrongSequenceNumbers,MissingMsgRef,HBCIVersion,SigIdLeadingZero,InvalidSuppHBCIVersion,SecTypeTAN,KUmsDelimiters,KUmsEmptyBDateSets");
+				setProperty("client.passport.PinTan.init", "1");
+				setProperty("client.passport.PinTan.filename", "c:\\pintan_hbci4java2");
+				//setProperty("client.passport.PinTan.certfile", "c:\\Programme\\apache-tomcat\\conf\\.test");
+				setProperty("client.passport.PinTan.checkcert", "1");
+			}
+		}
 	} 
 }

@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository
 @Repository
 public interface BankInformationRepository extends CrudRepository<Bank, Long> {
 
-    Bank findByBlz(String blz)
+    Bank findByBankCode(String bankCode)
 
 }

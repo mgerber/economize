@@ -13,7 +13,7 @@ import javax.persistence.Id
  *
  */
 @Entity
-class Bank implements Serializable{
+class Bank implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +25,7 @@ class Bank implements Serializable{
 
     private String port
 
-    private String blz
+    private String bankCode
 
     private String country
 
@@ -35,7 +35,7 @@ class Bank implements Serializable{
         return "Bank{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", blz='" + blz + '\'' +
+                ", blz='" + bankCode + '\'' +
                 ", country='" + country + '\'' +
                 ", host='" + host + '\'' +
                 ", port='" + port + '\'' +

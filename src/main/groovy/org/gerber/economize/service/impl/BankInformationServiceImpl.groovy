@@ -1,10 +1,11 @@
 /**
  *
  */
-package org.gerber.economize.service
+package org.gerber.economize.service.impl
 
 import org.gerber.economize.domain.Bank
 import org.gerber.economize.repositories.BankInformationRepository
+import org.gerber.economize.service.BankInformationService;
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,22 +26,22 @@ class BankInformationServiceImpl implements BankInformationService{
     private BankInformationRepository bankInformationRepository
 
     @Override
-    String getBankName(String blz) {
+    String getBankName(String bankCode) {
 
-        def bankFound = bankInformationRepository.findByBlz(blz)
+        def bankFound = bankInformationRepository.findByBankCode(bankCode)
 
-        LOGGER.info '{} found for {}', bankFound, blz
+        LOGGER.info '{} found for {}', bankFound, bankCode
 
         return bankFound?.name
     }
 
     @Override
-    Bank createBank(String bankName, String blz, String country, String host, String port) {
+    Bank createBank(String bankName, String bankCode, String country, String host, String port) {
 
         def bankCreated = new Bank()
 
-        bankCreated.name = bankName
-        bankCreated.blz      = blz
+        bankCreated.name     = bankName
+        bankCreated.bankCode = bankCode
         bankCreated.country  = country
         bankCreated.host     = host
         bankCreated.port     = port
