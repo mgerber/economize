@@ -40,15 +40,14 @@ class HbciServiceImpl implements HbciService {
 	@Override
 	public AccountDTO[] getAccountsFromBank(BankDTO bank) {
 		def hbciCallback = this.hbciCallbackFactory.createHBCICallback(bank);
-		HBCIUtils.init(this.defaultHbciProperties, new HbciCallback(bank));
+		HBCIUtils.init(this.defaultHbciProperties, hbciCallback);
 		String passportDescription="Passport";
 		HBCIPassport passport=AbstractHBCIPassport.getInstance("PinTan", passportDescription);
 		String version=passport.getHBCIVersion();
 		def hbciHandle = hbciHandlerFactory.createHBCIHandler((version.length() != 0) ? version : "plus", passport);
 
 		Konto[] kontos = passport.getAccounts();
-		
-		
+
 		return null;
 	}
 
