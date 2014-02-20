@@ -1,6 +1,6 @@
 language: java
 before_install: "mvn install:install-file -Dfile=lib/hbci4java-2.5.13-SNAPSHOT.jar -DpomFile=lib/hbci4java-2.5.13-SNAPSHOT.pom"
-before_install: "mvn com.zenjava:javafx-maven-plugin:2.0:fix-classpath"
+before_install: "mvn com.zenjava:javafx-maven-plugin:2.0:fix-classpath -DsilentJfxFix=true"
 
 jdk:
   - oraclejdk7
