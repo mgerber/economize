@@ -282,7 +282,6 @@
             <artifactId>groovyfx</artifactId>
             <version>0.3.1</version>
         </dependency>
-		<!--
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>javafx</artifactId>
@@ -290,7 +289,7 @@
             <systemPath>${java.home}/lib/jfxrt.jar</systemPath>
             <scope>system</scope>
         </dependency>
-		-->
+
         <!-- Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
