@@ -11,4 +11,5 @@ class BankDTO {
 	
 	private String country
 	
+	private String hbciVersion
 }

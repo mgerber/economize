@@ -3,7 +3,6 @@
  */
 package org.gerber.economize.view
 
-import java.lang.invoke.MethodHandleImpl.BindCaller.T
 import javafx.scene.Node;
 import javafx.scene.control.TreeItem
 

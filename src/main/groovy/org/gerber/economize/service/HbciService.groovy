@@ -12,6 +12,6 @@ import org.gerber.economize.service.dto.TransactionDTO
  *
  */
 interface HbciService {
-	AccountDTO[] getAccountsFromBank(BankDTO bank)
-	TransactionDTO[] getTransactionsByAccount(AccountDTO account)
+	List<AccountDTO> getAccountsFromBank(BankDTO bankDTO)
+	List<TransactionDTO> getTransactionsByAccount(BankDTO bankDTO, AccountDTO accountDTO)
 }
