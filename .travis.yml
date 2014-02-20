@@ -1,5 +1,5 @@
-language: groovy
+language: java
+before_install: "mvn install:install-file -Dfile=lib/hbci4java-2.5.13-SNAPSHOT.jar -DpomFile=lib/hbci4java-2.5.13-SNAPSHOT.pom"
 
 jdk:
-  - openjdk7
   - oraclejdk7
