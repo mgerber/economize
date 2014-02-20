@@ -1,4 +1,6 @@
 language: java
+script: "mvn install:install-file -Dfile=lib/hbci4java-2.5.13-SNAPSHOT.jar -DpomFile=lib/hbci4java-2.5.13-SNAPSHOT.pom"
+script: "mvn com.zenjava:javafx-maven-plugin:2.0:fix-classpath"
 
 jdk:
   - oraclejdk7
