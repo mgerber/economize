@@ -11,6 +11,7 @@ import org.gerber.economize.hbci4j.wrapper.impl.GVRKUmsWrapper
 import org.gerber.economize.hbci4j.wrapper.impl.HBCIHandlerWrapper
 import org.gerber.economize.hbci4j.wrapper.impl.HBCIUtilsWrapper
 import org.gerber.economize.hbci4j.wrapper.impl.KontoWrapper
+import org.gerber.economize.service.HbciServiceCallback;
 import org.gerber.economize.service.dto.AccountDTO
 import org.gerber.economize.service.dto.BankDTO
 import org.junit.Test
@@ -43,6 +44,7 @@ class HbciServiceImplTest extends Specification {
 	def hbciPassportWrapperMock = GroovyMock(HBCIPassportWrapper)
 
 	def bankDTOMock = GroovyMock(BankDTO)
+	def hbciServiceCallbackMock = GroovyMock(HbciServiceCallback)
 	def accountDTOMock = GroovyMock(AccountDTO)
 	def kontoWrapperMock = Mock(KontoWrapper)
 	def hbciJobWrapperMock = Mock(HBCIJobWrapper)
@@ -72,7 +74,7 @@ class HbciServiceImplTest extends Specification {
 
 	def "test that getAccountsFromBank calls all methods in right order"() {
 		when:
-		this.hbciService.getAccountsFromBank(this.bankDTOMock)
+		this.hbciService.getAccountsFromBank(this.bankDTOMock, this.hbciServiceCallbackMock)
 		
 		then: "ensure that initialization is done"
 		1 * this.hbciUtilsWrapperMock.init(_, _)
@@ -93,14 +95,14 @@ class HbciServiceImplTest extends Specification {
 		this.hbciPassportWrapperMock.getAccounts() >> this.kontoWrapperArray
 		
 		expect:
-		this.hbciService.getAccountsFromBank(this.bankDTOMock) != null
-		this.hbciService.getAccountsFromBank(null).size() == 0
-		this.hbciService.getAccountsFromBank(this.bankDTOMock).size() == 3
+		this.hbciService.getAccountsFromBank(this.bankDTOMock, this.hbciServiceCallbackMock) != null
+		this.hbciService.getAccountsFromBank(null, null).size() == 0
+		this.hbciService.getAccountsFromBank(this.bankDTOMock, this.hbciServiceCallbackMock).size() == 3
 	}
 
 	def "test that getTransactionsByAccount calls all methods in right order"() {
 		when:
-		this.hbciService.getTransactionsByAccount(this.bankDTOMock, this.accountDTOMock)
+		this.hbciService.getTransactionsByAccount(this.bankDTOMock, this.accountDTOMock, hbciServiceCallbackMock)
 		
 		then: "ensure that initialization is done"
 		1 * this.hbciUtilsWrapperMock.init(_, _)
@@ -135,6 +137,6 @@ class HbciServiceImplTest extends Specification {
 		this.gvrkUmsWrapperMock.isOK() >> true
 		
 		expect:
-		this.hbciService.getTransactionsByAccount(this.bankDTOMock, this.accountDTOMock) != null
+		this.hbciService.getTransactionsByAccount(this.bankDTOMock, this.accountDTOMock, this.hbciServiceCallbackMock) != null
 	}
 }

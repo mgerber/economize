@@ -1,16 +1,16 @@
 /**
  * 
  */
-package org.gerber.economize.view
+package org.gerber.economize.javafx.view
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Scene
-import javafx.scene.layout.Pane
 import javafx.stage.Stage
 
+import org.gerber.economize.configuration.JavaFXSpringConfiguration
 import org.gerber.economize.configuration.SpringConfiguration
-import org.gerber.economize.controller.MainController
+import org.gerber.economize.javafx.controller.MainController
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
@@ -26,7 +26,7 @@ class MainView extends Application {
 
         primaryStage.setTitle("Economize");
 
-        def ctx = new AnnotationConfigApplicationContext(SpringConfiguration.class)
+        def ctx = new AnnotationConfigApplicationContext(SpringConfiguration.class, JavaFXSpringConfiguration.class)
 		def fxmlLoader = new FXMLLoader(getClass().getResource(MAIN_VIEW))
 		fxmlLoader.setController(ctx.getBean(MainController.class))
 

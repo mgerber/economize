@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gerber.economize.controller
+package org.gerber.economize.javafx.controller
 
 import javafx.event.ActionEvent
 import javafx.fxml.FXML

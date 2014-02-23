@@ -15,10 +15,12 @@ import org.gerber.economize.hbci4j.wrapper.impl.HBCIExecStatusWrapper
 import org.gerber.economize.hbci4j.wrapper.impl.HBCIUtilsWrapper
 import org.gerber.economize.hbci4j.wrapper.impl.KontoWrapper
 import org.gerber.economize.service.HbciService
+import org.gerber.economize.service.HbciServiceCallback;
 import org.gerber.economize.service.dto.AccountDTO
 import org.gerber.economize.service.dto.BankDTO
 import org.gerber.economize.service.dto.TransactionDTO
 import org.kapott.hbci.GV_Result.GVRKUms.UmsLine;
+import org.kapott.hbci.passport.HBCIPassport
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -51,12 +53,12 @@ class HbciServiceImpl implements HbciService {
 	 * @see org.gerber.economize.service.HbciService#getAccountsFromBank(org.gerber.economize.service.dto.BankDTO)
 	 */
 	@Override
-	public List<AccountDTO> getAccountsFromBank(BankDTO bankDTO) {
+	public List<AccountDTO> getAccountsFromBank(final BankDTO bankDTO, final HbciServiceCallback hbciServiceCallback) {
 		def accountDTOList = new ArrayList<AccountDTO>()
 		if (bankDTO != null) {
-			def hbciCallback = this.hbciCallbackFactory.createHBCICallback(bankDTO)
+			def hbciCallback = this.hbciCallbackFactory.createHBCICallback(bankDTO, hbciServiceCallback)
 			this.hbciUtilsWrapper.init(this.defaultHbciProperties, hbciCallback)
-			HBCIPassportWrapper hbciPassportWrapper = this.hbciPassportWrapperFactory.createHBCIPassportWrapper("PinTan", "Passport")
+			HBCIPassport hbciPassportWrapper = this.hbciPassportWrapperFactory.createHBCIPassportWrapper("PinTan", "Passport")
  			def hbciHandlerWrapper = this.hbciHandlerWrapperFactory.createHBCIHandlerWrapper(bankDTO.hbciVersion, hbciPassportWrapper)
 	
 			KontoWrapper[] kontoWrapperArray = hbciPassportWrapper.getAccounts()
@@ -75,8 +77,8 @@ class HbciServiceImpl implements HbciService {
 	 * @see org.gerber.economize.service.HbciService#getTransactionsByAccount(org.gerber.economize.service.dto.AccountDTO)
 	 */
 	@Override
-	public List<TransactionDTO> getTransactionsByAccount(final BankDTO bankDTO, final AccountDTO accountDTO) {
-		def hbciCallback = this.hbciCallbackFactory.createHBCICallback(bankDTO)
+	public List<TransactionDTO> getTransactionsByAccount(final BankDTO bankDTO, final AccountDTO accountDTO, final HbciServiceCallback hbciServiceCallback) {
+		def hbciCallback = this.hbciCallbackFactory.createHBCICallback(bankDTO, hbciServiceCallback)
 		this.hbciUtilsWrapper.init(this.defaultHbciProperties, hbciCallback)
 		HBCIPassportWrapper hbciPassportWrapper = this.hbciPassportWrapperFactory.createHBCIPassportWrapper("PinTan", "Passport")
 		def hbciHandlerWrapper = this.hbciHandlerWrapperFactory.createHBCIHandlerWrapper(bankDTO.hbciVersion, hbciPassportWrapper)

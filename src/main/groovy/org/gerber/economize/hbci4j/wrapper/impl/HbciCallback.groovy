@@ -1,8 +1,9 @@
 /**
  * 
  */
-package org.gerber.economize.service.impl
+package org.gerber.economize.hbci4j.wrapper.impl
 
+import org.gerber.economize.service.HbciServiceCallback
 import org.gerber.economize.service.dto.BankDTO;
 import org.kapott.hbci.callback.AbstractHBCICallback
 import org.kapott.hbci.callback.HBCICallback
@@ -18,11 +19,12 @@ class HbciCallback extends AbstractHBCICallback
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HbciCallback)
 	
-	final BankDTO bank
+	private final BankDTO bank
+	private final HbciServiceCallback hbciServiceCallback
 	/**
 	 * 
 	 */
-	public HbciCallback(final BankDTO bank)
+	public HbciCallback(final BankDTO bank, hbciServiceCallback)
 	{
 		this.bank = bank
 	}
@@ -86,7 +88,7 @@ class HbciCallback extends AbstractHBCICallback
 			break;
 			case HBCICallback.NEED_PT_PIN:
 				LOGGER.info 'NEED_PT_PIN {}', arg4
-				arg4.replace(0,arg4.length(),"");
+				arg4.replace(0, arg4.length(), hbciServiceCallback.password);
 			break;			
 			case HBCICallback.NEED_PT_TAN:
 				LOGGER.info 'NEED_PT_TAN {}', arg4
