@@ -14,7 +14,6 @@ import org.kapott.hbci.manager.MsgGen;
 import org.kapott.hbci.passport.HBCIPassport;
 import org.kapott.hbci.status.HBCIDialogStatus;
 import org.kapott.hbci.status.HBCIExecThreadedStatus;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**

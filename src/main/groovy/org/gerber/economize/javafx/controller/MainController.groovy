@@ -1,30 +1,21 @@
 /**
  * 
  */
-package org.gerber.economize.controller
-
-import com.sun.javafx.scene.control.skin.LabeledText
-
-import javax.annotation.Resource;
+package org.gerber.economize.javafx.controller
 
 import javafx.beans.value.ChangeListener
 import javafx.beans.value.ObservableValue
-import javafx.event.ActionEvent;
 import javafx.event.Event
-import javafx.event.EventTarget
-import javafx.event.EventType;
 import javafx.fxml.FXML
-import javafx.fxml.FXMLLoader
-import javafx.scene.control.Cell
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
 import javafx.scene.layout.StackPane
-import javafx.event.EventHandler
 
+import javax.annotation.Resource
+
+import org.gerber.economize.javafx.view.NavigationTreeItem
 import org.gerber.economize.repositories.AccountInformationRepository
 import org.gerber.economize.repositories.BankInformationRepository
-import org.gerber.economize.view.NavigationTreeItem
-import org.hibernate.metamodel.domain.Superclass;
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

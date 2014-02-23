@@ -1,4 +1,4 @@
-package org.gerber.economize.controller
+package org.gerber.economize.javafx.controller
 
 import org.springframework.stereotype.Controller;
 

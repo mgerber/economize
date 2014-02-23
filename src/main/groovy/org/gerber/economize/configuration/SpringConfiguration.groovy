@@ -3,20 +3,14 @@
  */
 package org.gerber.economize.configuration
 
-import javafx.fxml.FXMLLoader
-
 import javax.persistence.EntityManagerFactory
 import javax.sql.DataSource
 
-import org.gerber.economize.controller.MainController;
-import org.gerber.economize.controller.NewAccountController;
-import org.gerber.economize.controller.NewBankController;
 import org.gerber.economize.domain.Account
-import org.gerber.economize.view.NavigationTreeItem;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.FilterType
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.jdbc.datasource.DriverManagerDataSource
@@ -32,15 +26,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
  *
  */
 @Configuration
-@ComponentScan(basePackages = ["org.gerber.economize"])
+@ComponentScan(basePackages = ["org.gerber.economize.domain",
+	                           "org.gerber.economize.hbci4j",
+							   "org.gerber.economize.repositories",
+							   "org.gerber.economize.service"])
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = ["org.gerber.economize.repositories"], entityManagerFactoryRef = "myEntityManagerFactoryBean")
 class SpringConfiguration {
-	@Autowired
-	private NewBankController newBankController
-	@Autowired
-	private NewAccountController newAccountController
-
     @Bean
     public LocalContainerEntityManagerFactoryBean myEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -90,21 +82,6 @@ class SpringConfiguration {
             }
         };
     }
-	
-	@Bean(name="ViewMap")
-	public Map<String, Object> getViewMap() {
-		def Map<String, Object> views = new HashMap()
-		def fxmlLoader
-		fxmlLoader = new FXMLLoader(getClass().getResource(MainController.NEW_BANK_VIEW))
-		fxmlLoader.setController(this.newBankController)
-		views.put(MainController.NEW_BANK_VIEW, fxmlLoader.load());
-			
-		fxmlLoader = new FXMLLoader(getClass().getResource(MainController.NEW_ACCOUNT_VIEW))
-		fxmlLoader.setController(this.newAccountController)
-		views.put(MainController.NEW_ACCOUNT_VIEW, fxmlLoader.load());
-
-		return views
-	}
 	
 	@Bean(name="DefaultHbciProperties")
 	public Properties getHbciDefaultProperties() {

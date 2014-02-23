@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gerber.economize.view
+package org.gerber.economize.javafx.view
 
 import javafx.scene.Node;
 import javafx.scene.control.TreeItem

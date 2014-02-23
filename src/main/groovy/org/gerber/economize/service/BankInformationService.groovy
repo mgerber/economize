@@ -3,7 +3,9 @@
  */
 package org.gerber.economize.service
 
-import org.gerber.economize.domain.Bank
+import java.util.List;
+
+import org.gerber.economize.service.dto.BankDTO;
 
 /**
  * @author Mike Großmann
@@ -11,5 +13,7 @@ import org.gerber.economize.domain.Bank
  */
 public interface BankInformationService {
     String getBankName(String blz)
-    Bank createBank(String bankName, String blz, String country, String host, String port)
+    BankDTO createBank(String bankName, String blz, String country, String host, String port)
+	List<BankDTO> getSavedBanks()
+	BankDTO getBankByID(Long id)
 }
