@@ -7,6 +7,8 @@ class BankDTO {
 
 	private String name
 	
+	private String hbciVersion
+	
 	private String host
 	
 	private String port
@@ -14,15 +16,14 @@ class BankDTO {
 	private String bankCode
 	
 	private String country
-	
-	private String hbciVersion
-	
+		
 	public BankDTO() {		
 	}
 
 	public BankDTO(final Bank bank) {
 		this.id = bank.id
 		this.name = bank.name
+		this.hbciVersion = bank.hbciVersion
 		this.host = bank.host
 		this.port = bank.port
 		this.bankCode = bank.bankCode

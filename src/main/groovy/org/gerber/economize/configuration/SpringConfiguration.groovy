@@ -77,7 +77,7 @@ class SpringConfiguration {
     Properties additionalProperties() {
         return new Properties() {
             {  // Hibernate Specific:
-                setProperty("hibernate.hbm2ddl.auto", "create-drop");
+                //setProperty("hibernate.hbm2ddl.auto", "create-drop");
                 setProperty("hibernate.dialect", "org.hibernate.dialect.DerbyTenSevenDialect");
             }
         };

@@ -24,9 +24,10 @@ class HbciCallback extends AbstractHBCICallback
 	/**
 	 * 
 	 */
-	public HbciCallback(final BankDTO bank, hbciServiceCallback)
+	public HbciCallback(final BankDTO bank, final HbciServiceCallback hbciServiceCallback)
 	{
 		this.bank = bank
+		this.hbciServiceCallback = hbciServiceCallback
 	}
 
 	/* (non-Javadoc)
@@ -88,7 +89,9 @@ class HbciCallback extends AbstractHBCICallback
 			break;
 			case HBCICallback.NEED_PT_PIN:
 				LOGGER.info 'NEED_PT_PIN {}', arg4
-				arg4.replace(0, arg4.length(), hbciServiceCallback.password);
+				LOGGER.info 'calling password callback'
+				String pin = this.hbciServiceCallback.getPassword()
+				arg4.replace(0, pin.length(), pin);
 			break;			
 			case HBCICallback.NEED_PT_TAN:
 				LOGGER.info 'NEED_PT_TAN {}', arg4

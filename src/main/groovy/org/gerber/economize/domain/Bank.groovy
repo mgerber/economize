@@ -23,6 +23,8 @@ class Bank implements Serializable {
 
     private String host
 
+	private String hbciVersion
+
     private String port
 
     private String bankCode

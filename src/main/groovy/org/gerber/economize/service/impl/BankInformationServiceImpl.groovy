@@ -37,13 +37,14 @@ class BankInformationServiceImpl implements BankInformationService {
     }
 
     @Override
-    BankDTO createBank(String bankName, String bankCode, String country, String host, String port) {
+    BankDTO createBank(String bankName, String bankCode, String country, final String hbciVersion, String host, String port) {
 
         def bankCreated = new Bank()
 
         bankCreated.name     = bankName
         bankCreated.bankCode = bankCode
         bankCreated.country  = country
+		bankCreated.hbciVersion = hbciVersion
         bankCreated.host     = host
         bankCreated.port     = port
 

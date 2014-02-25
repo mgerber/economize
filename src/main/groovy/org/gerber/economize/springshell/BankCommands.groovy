@@ -41,7 +41,8 @@ class BankCommands implements CommandMarker, HbciServiceCallback {
 		ConsoleReader reader = new ConsoleReader()
 		String host = reader.readLine('Host: ')
 		String port = reader.readLine('Port: ')
-		BankDTO bank = this.bankInformationService.createBank(bankName, blz, 'DE', host, port)
+		String hbciVersion = reader.readLine('HBCI Version: ')
+		BankDTO bank = this.bankInformationService.createBank(bankName, blz, 'DE', hbciVersion, host, port)
 		return "";
 	}
 

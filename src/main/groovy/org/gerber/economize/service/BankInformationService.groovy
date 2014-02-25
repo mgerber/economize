@@ -13,7 +13,7 @@ import org.gerber.economize.service.dto.BankDTO;
  */
 public interface BankInformationService {
     String getBankName(String blz)
-    BankDTO createBank(String bankName, String blz, String country, String host, String port)
+    BankDTO createBank(String bankName, String blz, String country, String hbciVersion, String host, String port)
 	List<BankDTO> getSavedBanks()
 	BankDTO getBankByID(Long id)
 }
