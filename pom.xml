@@ -341,16 +341,11 @@
             <version>${cglib.version}</version>
         </dependency>
          <dependency>
-			<groupId>org.springframework.shell</groupId>
-			<artifactId>spring-shell</artifactId>
-			<version>${spring.shell.version}</version>
-		</dependency>                         
-		<dependency>
-			<groupId>jline</groupId>
-			<artifactId>jline</artifactId>
-			<version>${jline.version}</version>
-			<scope>compile</scope>
-		</dependency>
+	   <groupId>org.springframework.shell</groupId>
+	   <artifactId>spring-shell</artifactId>
+	   <version>${spring.shell.version}</version>
+	</dependency>                         
+
         <!-- Logging -->
         <dependency>
             <groupId>log4j</groupId>
@@ -427,4 +422,12 @@
 		</dependency>
     </dependencies>
 
+    <repositories>
+        <!-- see https://jira.springsource.org/browse/SHL-52 -->
+        <repository>
+            <id>ext-release-local</id>
+            <url>http://repo.springsource.org/simple/ext-release-local/</url>
+        </repository>
+    </repositories>
+    
 </project>
