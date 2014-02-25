@@ -31,7 +31,7 @@ class EconomizeBanner extends DefaultBannerProvider implements BannerProvider {
 		StringBuffer buf = new StringBuffer();
 		buf.append('    ______                                       _           '  + OsUtils.LINE_SEPARATOR);
 		buf.append('   / ____/_____ ____   ____   ____   ____ ___   (_)____  ___ '  + OsUtils.LINE_SEPARATOR);
-		buf.append('  / __/  / ___// __ \\ / __ \\ / __ \\ / __ \\`__ \\ / //_  / / _ \\'  + OsUtils.LINE_SEPARATOR);
+		buf.append('  / __/  / ___// __ \\ / __ \\ / __ \\ / __ \\`__\\ / //_  / / _ \\'  + OsUtils.LINE_SEPARATOR);
 		buf.append(' / /___ / /__ / /_/ // / / // /_/ // / / / / // /  / /_/  __/'  + OsUtils.LINE_SEPARATOR);
 		buf.append('/_____/ \\___/ \\____//_/ /_/ \\____//_/ /_/ /_//_/  /___/\\___/ '  + OsUtils.LINE_SEPARATOR);
 		buf.append('                                                             '  + OsUtils.LINE_SEPARATOR)
