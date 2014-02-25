@@ -3,6 +3,8 @@
  */
 package org.gerber.economize.configuration
 
+import org.springframework.orm.jpa.vendor.Database
+
 import javax.persistence.EntityManagerFactory
 import javax.sql.DataSource
 
@@ -27,9 +29,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
  */
 @Configuration
 @ComponentScan(basePackages = ["org.gerber.economize.domain",
-	                           "org.gerber.economize.hbci4j",
-							   "org.gerber.economize.repositories",
-							   "org.gerber.economize.service"])
+"org.gerber.economize.hbci4j",
+"org.gerber.economize.repositories",
+"org.gerber.economize.service"])
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = ["org.gerber.economize.repositories"], entityManagerFactoryRef = "myEntityManagerFactoryBean")
 class SpringConfiguration {
@@ -39,6 +41,9 @@ class SpringConfiguration {
         em.setDataSource(dataSource());
         em.setPackagesToScan(Account.class.getPackage().getName());
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setShowSql(true);
+        vendorAdapter.setGenerateDdl(true);
+        vendorAdapter.setDatabase(Database.DERBY);
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
 
@@ -77,25 +82,25 @@ class SpringConfiguration {
     Properties additionalProperties() {
         return new Properties() {
             {  // Hibernate Specific:
-                //setProperty("hibernate.hbm2ddl.auto", "create-drop");
+                setProperty("hibernate.hbm2ddl.auto", "update");
                 setProperty("hibernate.dialect", "org.hibernate.dialect.DerbyTenSevenDialect");
             }
         };
     }
-	
-	@Bean(name="DefaultHbciProperties")
-	public Properties getHbciDefaultProperties() {
-		return new Properties() {
-			{
-				setProperty("client.passport.default", "PinTan");
-				setProperty("default.hbciversion", "plus");
-				setProperty("log.loglevel.default", "0");
-				setProperty("kernel.rewriter", "InvalidSegment,WrongStatusSegOrder,WrongSequenceNumbers,MissingMsgRef,HBCIVersion,SigIdLeadingZero,InvalidSuppHBCIVersion,SecTypeTAN,KUmsDelimiters,KUmsEmptyBDateSets");
-				setProperty("client.passport.PinTan.init", "1");
-				setProperty("client.passport.PinTan.filename", "c:\\pintan_hbci4java2");
-				//setProperty("client.passport.PinTan.certfile", "c:\\Programme\\apache-tomcat\\conf\\.test");
-				setProperty("client.passport.PinTan.checkcert", "1");
-			}
-		}
-	} 
+
+    @Bean(name = "DefaultHbciProperties")
+    public Properties getHbciDefaultProperties() {
+        return new Properties() {
+            {
+                setProperty("client.passport.default", "PinTan");
+                setProperty("default.hbciversion", "plus");
+                setProperty("log.loglevel.default", "0");
+                setProperty("kernel.rewriter", "InvalidSegment,WrongStatusSegOrder,WrongSequenceNumbers,MissingMsgRef,HBCIVersion,SigIdLeadingZero,InvalidSuppHBCIVersion,SecTypeTAN,KUmsDelimiters,KUmsEmptyBDateSets");
+                setProperty("client.passport.PinTan.init", "1");
+                setProperty("client.passport.PinTan.filename", "c:\\pintan_hbci4java2");
+                //setProperty("client.passport.PinTan.certfile", "c:\\Programme\\apache-tomcat\\conf\\.test");
+                setProperty("client.passport.PinTan.checkcert", "1");
+            }
+        }
+    }
 }
