@@ -23,6 +23,8 @@
         <spring.data.jpa.version>1.4.3.RELEASE</spring.data.jpa.version>
         <cglib.version>3.1</cglib.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
+        <jline.version>2.11</jline.version>
+        <spring.shell.version>1.0.0.RELEASE</spring.shell.version>
 
         <!-- LOGGING DEPENDENCIES -->
         <log4j2.version>2.0-beta9</log4j2.version>
@@ -341,12 +343,12 @@
          <dependency>
 			<groupId>org.springframework.shell</groupId>
 			<artifactId>spring-shell</artifactId>
-			<version>1.0.0.RELEASE</version>
+			<version>${spring.shell.version}</version>
 		</dependency>                         
 		<dependency>
-			<groupId>net.sourceforge.jline</groupId>
+			<groupId>jline</groupId>
 			<artifactId>jline</artifactId>
-			<version>1.0.S2-B</version>
+			<version>${jline.version}</version>
 			<scope>compile</scope>
 		</dependency>
         <!-- Logging -->
@@ -424,11 +426,5 @@
     		<scope>test</scope>
 		</dependency>
     </dependencies>
-    <repositories>
-	  <repository>
-	    <id>spring-milestone</id>
-	    <name>Spring Maven MILESTONE Repository</name>
-	    <url>http://repo.springframework.org/libs-milestone</url>
-	  </repository>
-	</repositories>
+
 </project>
