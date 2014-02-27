@@ -14,4 +14,5 @@ import org.gerber.economize.service.dto.TransactionDTO
 interface HbciService {
 	List<AccountDTO> getAccountsFromBank(BankDTO bankDTO, HbciServiceCallback hbciServiceCallback)
 	List<TransactionDTO> getTransactionsByAccount(BankDTO bankDTO, AccountDTO accountDTO, HbciServiceCallback hbciServiceCallback)
+    BankDTO getBankByCode(String bankCode)
 }
