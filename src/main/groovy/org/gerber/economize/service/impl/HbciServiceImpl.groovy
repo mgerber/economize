@@ -3,9 +3,6 @@
  */
 package org.gerber.economize.service.impl
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource
 
 import org.gerber.economize.hbci4j.wrapper.HBCIJobWrapper
@@ -31,7 +28,10 @@ import org.springframework.stereotype.Service
  */
 @Service
 class HbciServiceImpl implements HbciService {
-	
+
+    @Resource(name='bankDataMap')
+    private Map<String, String> bankDataMap
+
 	@Resource(name='DefaultHbciProperties')
 	private Properties defaultHbciProperties
 
@@ -116,4 +116,26 @@ class HbciServiceImpl implements HbciService {
 		
 		return banktDTO;
 	}
+
+    /* (non-Javadoc)
+     * @see org.gerber.economize.service.HbciService#getBankByCode(java.lang.String)
+     */
+    @Override
+    BankDTO getBankByCode(String bankCode) {
+
+        def bankData = this.bankDataMap.get(bankCode).tokenize("|" as char)
+
+        BankDTO bankDTO = new BankDTO()
+        bankDTO.bankCode   = bankCode
+        bankDTO.name       = bankData[0]
+        //bankDTO.location = bankData[1]
+        //bankDTO.bic      = bankData[2]
+        //bankDTO.unkown   = bankData[3]
+        //bankDTO.host     = bankData[4]
+        //bankDTO.url      = bankData[5]
+        //bankDTO.hbciv1   = bankData[6]
+        //bankDTO.hbciv2   = bankData[7]
+
+        return bankDTO
+    }
 }

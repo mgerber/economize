@@ -3,6 +3,12 @@
  */
 package org.gerber.economize.configuration
 
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.config.PropertiesFactoryBean
+import org.springframework.context.annotation.PropertySource
+import org.springframework.core.env.Environment
+import org.springframework.core.io.ClassPathResource
+import org.springframework.core.io.Resource
 import org.springframework.orm.jpa.vendor.Database
 
 import javax.persistence.EntityManagerFactory
@@ -35,6 +41,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = ["org.gerber.economize.repositories"], entityManagerFactoryRef = "myEntityManagerFactoryBean")
 class SpringConfiguration {
+
     @Bean
     public LocalContainerEntityManagerFactoryBean myEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -103,4 +110,34 @@ class SpringConfiguration {
             }
         }
     }
+
+    @Bean(name = 'bankDataMap')
+    public Map<String, String>bankDataMap(){
+
+        def bankDataMap = new HashMap()
+        def bankDataProperties = getBankDataProperties()
+
+        for(Object key : bankDataProperties.keys()) {
+            if (key instanceof String) {
+                Object value = bankDataProperties.getProperty(key)
+                if(value != null) {
+                    bankDataMap.put(key, value)
+                }
+            }
+        }
+
+        return bankDataMap
+    }
+
+    //
+    // private methods
+    //
+
+    Properties getBankDataProperties() {
+        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean()
+        propertiesFactoryBean.setLocation(new ClassPathResource("blz.properties"))
+        propertiesFactoryBean.afterPropertiesSet();
+        propertiesFactoryBean.getObject()
+    }
+
 }
