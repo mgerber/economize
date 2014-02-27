@@ -4,6 +4,7 @@
 package org.gerber.economize.springshell
 
 import jline.ConsoleReader
+
 import org.gerber.economize.domain.Bank
 import org.gerber.economize.service.BankInformationService
 import org.gerber.economize.service.HbciService
@@ -38,12 +39,13 @@ class BankCommands implements CommandMarker, HbciServiceCallback {
 	public String createBank (
 		@CliOption(key = [ "bankName" ], mandatory = true, help = "Name der Bank") final String bankName,
 		@CliOption(key = [ "blz" ], mandatory = true, help = "Bankleitzahl") final String blz) {
-		ConsoleReader reader = new ConsoleReader()
+		/*ConsoleReader reader = new ConsoleReader()
 		String host = reader.readLine('Host: ')
 		String port = reader.readLine('Port: ')
 		String hbciVersion = reader.readLine('HBCI Version: ')
 		BankDTO bank = this.bankInformationService.createBank(bankName, blz, 'DE', hbciVersion, host, port)
-		return "";
+		*/
+		return this.hbciService.getDefaultBankData(blz);
 	}
 
 	@CliCommand(value = "bank showSavedBanks", help = "Zeigt alle gespeicherten Banken")

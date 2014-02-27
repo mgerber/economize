@@ -20,6 +20,7 @@ import org.gerber.economize.service.dto.AccountDTO
 import org.gerber.economize.service.dto.BankDTO
 import org.gerber.economize.service.dto.TransactionDTO
 import org.kapott.hbci.GV_Result.GVRKUms.UmsLine;
+import org.kapott.hbci.manager.HBCIUtilsInternal;
 import org.kapott.hbci.passport.HBCIPassport
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -104,5 +105,15 @@ class HbciServiceImpl implements HbciService {
 		}
 		hbciHandlerWrapper.close()
 		return transactionList;
+	}
+
+	@Override
+	public BankDTO getDefaultBankData(String bankCode) {
+		BankDTO banktDTO = new BankDTO()
+		String bankCodeString = HBCIUtilsInternal.getBLZData(bankCode)
+		String[] parts = bankCodeString.split("\\|")
+		println(bankCodeString)
+		
+		return banktDTO;
 	}
 }
