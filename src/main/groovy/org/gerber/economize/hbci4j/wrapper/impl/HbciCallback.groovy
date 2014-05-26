@@ -73,7 +73,7 @@ class HbciCallback extends AbstractHBCICallback
 			break;
 			case HBCICallback.NEED_USERID:
 				LOGGER.info 'NEED_USERID {}', arg4
-				arg4.replace(0,arg4.length(),"17687351");
+				arg4.replace(0,arg4.length(), this.bank.userId);
 			break;
 			case HBCICallback.NEED_NEW_INST_KEYS_ACK:
 				LOGGER.info 'NEED_NEW_INST_KEYS_ACK {}', arg4
