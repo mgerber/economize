@@ -104,13 +104,17 @@ class SpringConfiguration {
                 setProperty("log.loglevel.default", "0");
                 setProperty("kernel.rewriter", "InvalidSegment,WrongStatusSegOrder,WrongSequenceNumbers,MissingMsgRef,HBCIVersion,SigIdLeadingZero,InvalidSuppHBCIVersion,SecTypeTAN,KUmsDelimiters,KUmsEmptyBDateSets");
                 setProperty("client.passport.PinTan.init", "1");
-                setProperty("client.passport.PinTan.filename", "c:\\pintan_hbci4java2");
+                setProperty("client.passport.PinTan.filename", passportName());
                 //setProperty("client.passport.PinTan.certfile", "c:\\Programme\\apache-tomcat\\conf\\.test");
                 setProperty("client.passport.PinTan.checkcert", "1");
             }
         }
     }
 
+    @Bean(name = 'passportName')
+    public String passportName(){
+        return "c:\\pintan_hbci4java2"
+    }
     @Bean(name = 'bankDataMap')
     public Map<String, String>bankDataMap(){
 

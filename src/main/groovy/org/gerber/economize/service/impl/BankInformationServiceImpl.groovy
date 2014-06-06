@@ -27,26 +27,21 @@ class BankInformationServiceImpl implements BankInformationService {
     private BankInformationRepository bankInformationRepository
 
     @Override
-    String getBankName(String bankCode) {
-
-        def bankFound = bankInformationRepository.findByBankCode(bankCode)
-
-        LOGGER.info '{} found for {}', bankFound, bankCode
-
-        return bankFound?.name
-    }
-
-    @Override
-    BankDTO createBank(String bankName, String bankCode, String country, final String hbciVersion, String host, String port) {
+    BankDTO createBank(final BankDTO bankDTO) {
 
         def bankCreated = new Bank()
 
-        bankCreated.name     = bankName
-        bankCreated.bankCode = bankCode
-        bankCreated.country  = country
-		bankCreated.hbciVersion = hbciVersion
-        bankCreated.host     = host
-        bankCreated.port     = port
+        bankCreated.bankCode 		= bankDTO.bankCode
+        bankCreated.name     		= bankDTO.name
+		bankCreated.location 		= bankDTO.location
+		bankCreated.bic 			= bankDTO.bic
+		bankCreated.crc 			= bankDTO.crc
+		bankCreated.hbciHost 		= bankDTO.hbciHost
+		bankCreated.pinTanURL 		= bankDTO.pinTanURL
+		bankCreated.hbciVersion 	= bankDTO.hbciVersion
+		bankCreated.pinTanVersion 	= bankDTO.pinTanVersion
+		bankCreated.port 			= bankDTO.port
+		bankCreated.country 		= bankDTO.country
 
         LOGGER.info '{} created', bankCreated
 
@@ -71,5 +66,29 @@ class BankInformationServiceImpl implements BankInformationService {
 		Bank bank = this.bankInformationRepository.findOne(id)
 		BankDTO bankDTO = new BankDTO(bank)
 		return bankDTO;
+	}
+
+	@Override
+	public BankDTO saveBank(BankDTO bankDTO) {
+		Bank bankCreated = this.bankInformationRepository.findOne(bankDTO.id)
+
+        bankCreated.bankCode 		= bankDTO.bankCode
+        bankCreated.name     		= bankDTO.name
+		bankCreated.location 		= bankDTO.location
+		bankCreated.bic 			= bankDTO.bic
+		bankCreated.crc 			= bankDTO.crc
+		bankCreated.hbciHost 		= bankDTO.hbciHost
+		bankCreated.pinTanURL 		= bankDTO.pinTanURL
+		bankCreated.hbciVersion 	= bankDTO.hbciVersion
+		bankCreated.pinTanVersion 	= bankDTO.pinTanVersion
+		bankCreated.port 			= bankDTO.port
+		bankCreated.country 		= bankDTO.country
+
+        LOGGER.info '{} changed', bankCreated
+
+        def bankSaved = bankInformationRepository.save(bankCreated)
+		
+        LOGGER.info '{} saved', bankSaved
+		return new BankDTO(bankSaved)
 	}
 }

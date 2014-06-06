@@ -3,11 +3,14 @@
  */
 package org.gerber.economize.hbci4j.wrapper.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
+
+import javax.annotation.Resource;
 
 import org.kapott.hbci.GV_Result.GVRKUms;
 import org.kapott.hbci.callback.HBCICallback;
@@ -21,15 +24,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class HBCIUtilsWrapper {
-	public Properties loadPropertiesFile(final ClassLoader cl, final String configfile) {
+    @Resource(name="passportName")
+    private String passportName;
+
+    public Properties loadPropertiesFile(final ClassLoader cl, final String configfile) {
 		return HBCIUtils.loadPropertiesFile(cl, configfile);
 	}
 
 	public void init(final Properties props, final HBCICallback callback) {
+		File file = new File(passportName);
+		file.delete();
 		HBCIUtils.init(props, callback);
 	}
 
     public void initThread(final Properties props, final HBCICallback callback) {
+		File file = new File(passportName);
+		file.delete();
     	HBCIUtils.initThread(props, callback);
     }
 

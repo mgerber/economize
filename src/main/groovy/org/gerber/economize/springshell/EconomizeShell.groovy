@@ -35,4 +35,11 @@ class EconomizeShell implements CommandMarker, HbciServiceCallback {
 		ConsoleReader reader = new ConsoleReader();
 		String password = reader.readLine('Password: ', '*'.toCharacter())
 	}
+
+	@Override
+	public String getUserid() {
+		ConsoleReader reader = new ConsoleReader();
+		String userId = reader.readLine('Benutzerkennung: ')
+		return userId
+	}
 }

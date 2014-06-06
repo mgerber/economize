@@ -11,6 +11,7 @@ import org.gerber.economize.domain.Bank
 import org.gerber.economize.repositories.AccountInformationRepository
 import org.gerber.economize.repositories.BankInformationRepository
 import org.gerber.economize.service.BankInformationService
+import org.gerber.economize.service.dto.BankDTO
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -34,8 +35,12 @@ class NewBankController {
 
     @FXML
     protected void saveButtonFired(ActionEvent event) {
-
-        bankInformationService.createBank(this.bankName.getText(), this.blz.getText(), "empty", this.url.getText(), this.port.getText())
+		BankDTO bankDTO = new BankDTO()
+		bankDTO.bankCode = this.blz.getText()
+		bankDTO.name = this.bankName.getText()
+		bankDTO.hbciHost = this.url.getText()
+		bankDTO.port = this.port.getText()
+        bankInformationService.createBank(bankDTO)
 
     }
 }

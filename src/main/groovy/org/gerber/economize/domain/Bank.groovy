@@ -19,15 +19,25 @@ class Bank implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id
 
+    private String bankCode
+
     private String name
 
-    private String host
+	private String location
+	
+	private String bic
+	
+	private String crc
+	
+    private String hbciHost
+
+	private String pinTanURL
 
 	private String hbciVersion
 
-    private String port
+	private String pinTanVersion
 
-    private String bankCode
+    private String port
 
     private String country
 
@@ -36,11 +46,17 @@ class Bank implements Serializable {
     public String toString() {
         return "Bank{" +
                 "id=" + id +
+                ", bankCode='" + bankCode + '\'' +
                 ", name='" + name + '\'' +
-                ", blz='" + bankCode + '\'' +
-                ", country='" + country + '\'' +
-                ", host='" + host + '\'' +
+                ", location='" + location + '\'' +
+                ", BIC='" + bic + '\'' +
+                ", crc='" + crc + '\'' +
+                ", hbciHost='" + hbciHost + '\'' +
+                ", pinTanURL='" + pinTanURL + '\'' +
+                ", hbciVersion='" + hbciVersion + '\'' +
+                ", pinTanVersion='" + pinTanVersion + '\'' +
                 ", port='" + port + '\'' +
+                ", country='" + country + '\'' +
                 '}';
     }
 }

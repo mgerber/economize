@@ -19,6 +19,7 @@ import org.gerber.economize.service.dto.TransactionDTO
 import org.kapott.hbci.GV_Result.GVRKUms.UmsLine;
 import org.kapott.hbci.manager.HBCIUtilsInternal;
 import org.kapott.hbci.passport.HBCIPassport
+import org.kapott.hbci.structures.Konto;
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -60,9 +61,9 @@ class HbciServiceImpl implements HbciService {
 			def hbciCallback = this.hbciCallbackFactory.createHBCICallback(bankDTO, hbciServiceCallback)
 			this.hbciUtilsWrapper.init(this.defaultHbciProperties, hbciCallback)
 			HBCIPassport hbciPassportWrapper = this.hbciPassportWrapperFactory.createHBCIPassportWrapper("PinTan", "Passport")
- 			def hbciHandlerWrapper = this.hbciHandlerWrapperFactory.createHBCIHandlerWrapper(bankDTO.hbciVersion, hbciPassportWrapper)
+ 			def hbciHandlerWrapper = this.hbciHandlerWrapperFactory.createHBCIHandlerWrapper(bankDTO.pinTanVersion, hbciPassportWrapper)
 	
-			KontoWrapper[] kontoWrapperArray = hbciPassportWrapper.getAccounts()
+			Konto[] kontoWrapperArray = hbciPassportWrapper.getAccounts()
 			for(int ii = 0; ii < kontoWrapperArray.length; ii++) {
 				def accountDTO = new AccountDTO()
 				accountDTO.accountNumber = kontoWrapperArray[ii].number
@@ -82,7 +83,7 @@ class HbciServiceImpl implements HbciService {
 		def hbciCallback = this.hbciCallbackFactory.createHBCICallback(bankDTO, hbciServiceCallback)
 		this.hbciUtilsWrapper.init(this.defaultHbciProperties, hbciCallback)
 		HBCIPassportWrapper hbciPassportWrapper = this.hbciPassportWrapperFactory.createHBCIPassportWrapper("PinTan", "Passport")
-		def hbciHandlerWrapper = this.hbciHandlerWrapperFactory.createHBCIHandlerWrapper(bankDTO.hbciVersion, hbciPassportWrapper)
+		def hbciHandlerWrapper = this.hbciHandlerWrapperFactory.createHBCIHandlerWrapper(bankDTO.pinTanVersion, hbciPassportWrapper)
 
 		def kontoWrapper = this.kontoWrapperFactory.createKonto()
 		kontoWrapper.iban = accountDTO.iban
@@ -107,35 +108,26 @@ class HbciServiceImpl implements HbciService {
 		return transactionList;
 	}
 
-	@Override
-	public BankDTO getDefaultBankData(String bankCode) {
-		BankDTO banktDTO = new BankDTO()
-		String bankCodeString = HBCIUtilsInternal.getBLZData(bankCode)
-		String[] parts = bankCodeString.split("\\|")
-		println(bankCodeString)
-		
-		return banktDTO;
-	}
-
     /* (non-Javadoc)
      * @see org.gerber.economize.service.HbciService#getBankByCode(java.lang.String)
      */
     @Override
     BankDTO getBankByCode(String bankCode) {
-
-        def bankData = this.bankDataMap.get(bankCode).tokenize("|" as char)
-
         BankDTO bankDTO = new BankDTO()
-        bankDTO.bankCode   = bankCode
-        bankDTO.name       = bankData[0]
-        //bankDTO.location = bankData[1]
-        //bankDTO.bic      = bankData[2]
-        //bankDTO.unkown   = bankData[3]
-        //bankDTO.host     = bankData[4]
-        //bankDTO.url      = bankData[5]
-        //bankDTO.hbciv1   = bankData[6]
-        //bankDTO.hbciv2   = bankData[7]
 
+        def bankData = this.bankDataMap.get(bankCode)?.split("\\|")
+		bankDTO.bankCode		= bankCode
+		bankDTO.name			= bankData?.getAt(0)
+		bankDTO.location		= bankData?.getAt(1)
+		bankDTO.bic      		= bankData?.getAt(2)
+		bankDTO.crc				= bankData?.getAt(3)
+		bankDTO.hbciHost		= bankData?.getAt(4)
+		bankDTO.pinTanURL		= bankData?.getAt(5)
+		bankDTO.hbciVersion		= bankData?.getAt(6)
+		bankDTO.pinTanVersion	= bankData?.getAt(7)
+		bankDTO.port			= "443"
+		bankDTO.country			= "DE"
+	
         return bankDTO
     }
 }

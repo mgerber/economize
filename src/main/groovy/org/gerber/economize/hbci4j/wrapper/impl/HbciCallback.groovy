@@ -65,15 +65,21 @@ class HbciCallback extends AbstractHBCICallback
 			break;
 			case HBCICallback.NEED_HOST:
 				LOGGER.info 'NEED_HOST {}', arg4
-				arg4.replace(0,arg4.length(), this.bank.host);
+				String url = this.bank.pinTanURL.replace('https://', '')
+				LOGGER.info 'host: {}',url
+				
+				//arg4.replace(0,arg4.length(), url);
 			break;
 			case HBCICallback.NEED_PORT:
 				LOGGER.info 'NEED_PORT {}', arg4
-				arg4.replace(0,arg4.length(), this.bank.port);
+				if (!this.bank.port.empty) {
+					arg4.replace(0,arg4.length(), this.bank.port);
+				}
 			break;
 			case HBCICallback.NEED_USERID:
 				LOGGER.info 'NEED_USERID {}', arg4
-				arg4.replace(0,arg4.length(),"17687351");
+				String userId = this.hbciServiceCallback.getUserid()
+				arg4.replace(0,userId.length(),userId);
 			break;
 			case HBCICallback.NEED_NEW_INST_KEYS_ACK:
 				LOGGER.info 'NEED_NEW_INST_KEYS_ACK {}', arg4
