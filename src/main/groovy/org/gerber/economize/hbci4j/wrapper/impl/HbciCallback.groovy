@@ -78,6 +78,7 @@ class HbciCallback extends AbstractHBCICallback
 			break;
 			case HBCICallback.NEED_USERID:
 				LOGGER.info 'NEED_USERID {}', arg4
+
 				String userId = this.hbciServiceCallback.getUserid()
 				arg4.replace(0,userId.length(),userId);
 			break;
