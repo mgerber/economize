@@ -33,7 +33,7 @@ class NewAccountController {
 	@FXML
 	protected void saveButtonFired(ActionEvent event) {
 
-       this.accountInformationService.createAccount(this.blz.getText(), this.knr.getText(), '')
+       this.accountInformationService.createAccount(this.blz.getText(), this.knr.getText(), '', '')
 
 	}
 }

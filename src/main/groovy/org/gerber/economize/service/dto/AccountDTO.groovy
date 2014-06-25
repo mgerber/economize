@@ -13,4 +13,6 @@ class AccountDTO {
 		private String accountNumber
 	
 		private String iban	
+		
+		private String tanMedia
 }

@@ -31,13 +31,13 @@ class AccountInformationServiceImpl implements AccountInformationService {
 
     @Override
     @Transactional(readOnly = false)
-    Account createAccount(final String bankCode, final String knr, final String iban) {
+    Account createAccount(final String bankCode, final String knr, final String iban, final String tanMedia) {
 
         def bankFound = bankInformationRepository.findByBankCode(bankCode)
 
         LOGGER.info '{} found for {}', bankFound, bankCode
 
-        def accountCreated = new Account(bank: bankFound, accountNumber: knr, iban: iban)
+        def accountCreated = new Account(bank: bankFound, accountNumber: knr, iban: iban, tanMedia: tanMedia)
 
         LOGGER.info '{} created', accountCreated
 

@@ -127,6 +127,9 @@ class BankCommands implements CommandMarker, HbciServiceCallback {
 		buf.append('ID=' + list.id)
 		buf.append(' Name=' + list.name)
 		buf.append(' BLZ=' + list.bankCode)
+		buf.append(' BIC=' + list.bic)
+		buf.append(' HBCI-Host=' + list.hbciHost)
+		buf.append(' HBCI-Version=' + list.hbciVersion)
 		buf.append(OsUtils.LINE_SEPARATOR)
 		return buf.toString()
 	}

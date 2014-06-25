@@ -10,5 +10,5 @@ import org.gerber.economize.domain.Account
  *
  */
 interface AccountInformationService {
-    Account createAccount(String blz, String knr, String iban)
+    Account createAccount(String blz, String knr, String iban, String tanMedia)
 }

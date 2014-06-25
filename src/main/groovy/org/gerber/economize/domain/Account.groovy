@@ -19,11 +19,12 @@ class Account {
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Bank bank
+	
+	private Login login
 
     private String accountNumber
 
     private String iban
-
 
     @Override
     public String toString() {
@@ -32,6 +33,7 @@ class Account {
                 ", bank=" + bank +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", iban='" + iban + '\'' +
+				'\'' +
                 '}';
     }
 }
